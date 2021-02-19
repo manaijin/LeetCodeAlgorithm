@@ -1,0 +1,13 @@
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.exe
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.deps.json
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.runtimeconfig.json
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.runtimeconfig.dev.json
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.dll
+D:\Console Project\LeetCodeAlgorithm\bin\Debug\netcoreapp3.1\LeetCodeAlgorithm.pdb
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.csprojAssemblyReference.cache
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.AssemblyInfoInputs.cache
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.AssemblyInfo.cs
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.csproj.CoreCompileInputs.cache
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.dll
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.pdb
+D:\Console Project\LeetCodeAlgorithm\obj\Debug\netcoreapp3.1\LeetCodeAlgorithm.genruntimeconfig.cache

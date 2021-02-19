@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "LeetCodeAlgorithm/1.0.0": {
+        "runtime": {
+          "LeetCodeAlgorithm.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LeetCodeAlgorithm/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -7,8 +7,8 @@ namespace LeetCodeAlgorithm
     {
         static void Main(string[] args)
         {
-            LengthOfLongestSubstring("abcabcbb");
-            Console.WriteLine("Hello World!");
+            string s = Convert("PAYPALISHIRING", 3);
+            Console.WriteLine(s);
         }
 
         /// <summary>
@@ -86,6 +86,8 @@ namespace LeetCodeAlgorithm
 
         /// <summary>
         /// 3. 无重复字符的最长子串
+        /// 关键：若k~m为不重复字符串，则k+n~m也为不重复字符串
+        /// 因此使用双指针（滑动窗口）来处理,遍历字符串，end指针每次++，动态计算start指针
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -94,28 +96,178 @@ namespace LeetCodeAlgorithm
             int max = 0;
             Dictionary<char, int> sub_str_map = new Dictionary<char, int>();
             int count = s.Length;
-            for (int i = 0; i < count; i++)
+            int start_index = 0;
+            int end_index = 0;
+            while (end_index < count)
             {
-                sub_str_map.Clear();
-                sub_str_map.Add(s[i], 1);
-                int length = 1;
-                for (int j = i + 1; j < count; j++)
+                char c = s[end_index];
+                // 记录最新的字符下标
+                if (!sub_str_map.ContainsKey(c))
+                    sub_str_map.Add(c, end_index);
+                else
                 {
-                    if (!sub_str_map.ContainsKey(s[j]))
+                    start_index = Math.Max(sub_str_map[c] + 1, start_index);
+                    sub_str_map[c] = end_index;
+                }
+
+                int length = end_index - start_index + 1;
+                max = Math.Max(max, length);
+                end_index++;
+            }
+            return max;
+
+            //// 记录字符上一次出现的位置
+            //int[] last = new int[128];
+            //for (int i = 0; i < 128; i++)
+            //{
+            //    last[i] = -1;
+            //}
+            //int n = s.Length;
+
+            //int max = 0;
+            //int start = 0; // 窗口开始位置
+            //for (int i = 0; i < n; i++)
+            //{
+            //    int index = s[i];
+            //    start = Math.Max(start, last[index] + 1);
+            //    max = Math.Max(max, i - start + 1);
+            //    last[index] = i;
+            //}
+
+            //return max;
+        }
+
+        /// <summary>
+        /// 4.两个数组的中位数
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="nums2"></param>
+        /// <returns></returns>
+        public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            int m = nums1.Length;
+            int n = nums2.Length;
+
+            int count = m + n;
+            bool flag = count % 2 == 0;
+            int[] all_list = new int[count];
+            double result = 0;
+            int i = 0, j = 0;
+            int index = 0;
+            int max_index = flag ? count / 2 + 1 : (count + 1) / 2;
+
+            while (i < m || j < n)
+            {
+                int item;
+                if(i >= m)
+                {
+                    item = nums2[j];
+                    j++;
+                }else if(j >= n)
+                {
+                    item = nums1[i];
+                    i++;
+                }
+                else if (nums1[i] < nums2[j])
+                {
+                    item = nums1[i];
+                    i++;
+                }
+                else
+                {
+                    item = nums2[j];
+                    j++;
+                }
+
+                all_list[index] = item;
+
+                if(index >= max_index - 1)
+                {
+                    if (flag)
+                        result = ((double)all_list[index - 1] + all_list[index]) / 2;
+                    else
+                        result = item;
+                    break;
+                }
+                index++;
+            };
+            return result;
+        }
+
+        /// <summary>
+        /// 5. 最长回文子串
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string LongestPalindrome(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            int count = s.Length;
+            if (count == 1) return s;
+
+            string result = string.Empty;
+            int max_length = 0;
+            int count2 = count * 2 - 1;
+            for (int i = 0; i < count2; i++)
+            {
+                // 计算中心点
+                int center1;
+                int center2;
+                if(i % 2 == 0)
+                    center1 = center2 = i / 2;
+                else
+                {
+                    center1 = i / 2;
+                    center2 = i / 2 + 1;
+                }
+
+                int left_index = center1, right_index = center2;
+                while(left_index >= 0 && right_index < count)
+                {
+                    if (s[left_index] == s[right_index])
                     {
-                        sub_str_map.Add(s[j], 1);
-                        length++;
+                        // 拓展中心点
+                        int length = right_index - left_index + 1;
+                        // 更新结果
+                        if (length > max_length)
+                        {
+                            max_length = length;
+                            result = s.Substring(left_index, max_length);
+                        }
+                        left_index--;
+                        right_index++;
                     }
                     else
                         break;
                 }
-                if (length > max)
-                    max = length;
-
-                if (max >= count - i)
-                    return max;
             }
-            return max;
+            return result;
+        }
+
+        public static string Convert(string s, int numRows)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            if (numRows <= 1) return s;
+
+            Dictionary<int, List<char>> map = new Dictionary<int, List<char>>(numRows);
+            string result = string.Empty;
+            int count = s.Length;
+            int max_cir = numRows * 2 - 2;
+            // 遍历字符串
+            for (int i = 0; i < count; i++)
+            {
+                int index = i % max_cir;
+                int raw = index < numRows ? index : numRows * 2 - index - 2;
+                if (map.ContainsKey(raw))
+                    map[raw].Add(s[i]);
+                else
+                    map.Add(raw, new List<char>() { s[i] });
+            }
+
+            // 生成结果
+            foreach(var item in map.Values)
+                result += new string(item.ToArray());
+            return result;
         }
     }
 }

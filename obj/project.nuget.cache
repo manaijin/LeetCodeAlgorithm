@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Lf715gOJAWSr5d5w7dM4z2W8a93HvyGKNR0XmBpWd2HonarRca+Xcizl2AnwKhoB84bNbCANg7bSz4KWUKu4jw==",
+  "dgSpecHash": "kur6dtqPOvuplN3q2Yaw7TTUd7KjebA0i24s3jgksjJoaTTw6b2Zu/155UGErKJP2ujfHjdLaICmcNNdZYWDtg==",
   "success": true,
-  "projectFilePath": "D:\\Console Project\\LeetCodeAlgorithm\\LeetCodeAlgorithm.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\MyProject\\LeetCodeAlgorithm\\LeetCodeAlgorithm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }

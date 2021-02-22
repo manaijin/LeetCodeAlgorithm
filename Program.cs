@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LeetCodeAlgorithm
 {
@@ -7,8 +8,9 @@ namespace LeetCodeAlgorithm
     {
         static void Main(string[] args)
         {
-            string s = Convert("PAYPALISHIRING", 3);
-            Console.WriteLine(s);
+            int a = int.MaxValue;
+            Console.WriteLine(a);
+            Console.WriteLine(a + 2);
         }
 
         /// <summary>
@@ -44,7 +46,6 @@ namespace LeetCodeAlgorithm
             }
             return result;
         }
-
 
         public class ListNode
         {
@@ -244,6 +245,12 @@ namespace LeetCodeAlgorithm
             return result;
         }
 
+        /// <summary>
+        /// 6. Z 字形变换
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="numRows"></param>
+        /// <returns></returns>
         public static string Convert(string s, int numRows)
         {
             if (string.IsNullOrEmpty(s)) return s;
@@ -268,6 +275,61 @@ namespace LeetCodeAlgorithm
             foreach(var item in map.Values)
                 result += new string(item.ToArray());
             return result;
+        }
+
+
+        /// <summary>
+        /// 7. 整数反转
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static int Reverse(int x)
+        {
+            string s = x.ToString();
+            StringBuilder sb_r = new StringBuilder();
+            int max_count = 10;
+            int count = s.Length;
+            int sign = 0;
+            char first = s[0];
+            if (!char.IsNumber(first))
+            {
+                sign = 1;
+                sb_r.Append(first);
+            }
+
+            if (count - sign > max_count) return 0;
+
+            if(count - sign < max_count)
+            {
+                for (int i = count - 1; i >= sign; i--)
+                {
+                    if (!char.IsNumber(s[i])) return 0;
+                    sb_r.Append(s[i]);
+                }
+            }
+
+            if (count - sign == max_count)
+            {
+                string max_str = x > 0 ? "+" + int.MaxValue.ToString() : int.MinValue.ToString();
+                bool flag = true;
+                for (int i = count - 1, j = 1; i >= sign; i--, j++)
+                {
+                    char r_s = s[i];                    
+                    if (!char.IsNumber(r_s)) return 0;
+                    char c_s = max_str[j];
+                    int.TryParse(r_s.ToString(), out int r_int);
+                    int.TryParse(c_s.ToString(), out int c_int);
+                    if (r_int < c_int && flag)
+                        flag = false;
+
+                    if (r_int > c_int && flag)
+                        return 0;
+
+                    sb_r.Append(s[i]);
+                }
+            }
+
+            return int.Parse(sb_r.ToString());
         }
     }
 }
